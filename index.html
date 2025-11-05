@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="utf-8"><title>Blog</title></head>
+  <body>
+    <h1>Listado</h1>
+    {% if page_obj %}
+      <ul>
+        {% for post in page_obj %}
+          <li>{{ post.titulo }}</li>
+        {% empty %}
+          <li>No hay publicaciones todavía.</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Sin datos.</p>
+    {% endif %}
+  </body>
+</html>
