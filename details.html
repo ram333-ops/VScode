@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ post.titulo }} — Blog Universitario{% endblock %}
+{% block content %}
+  <article class="post-detail">
+    <h2>{{ post.titulo }}</h2>
+    {% if post.categoria %}<span class="pill">{{ post.categoria.nombre }}</span>{% endif %}
+    <div class="meta">Publicado: {{ post.creado|date:'d/m/Y H:i' }} · 👍 <span id="like-count">{{ post.likes }}</span></div>
+    <div class="cuerpo">{{ post.cuerpo|linebreaks }}</div>
+
+
+    <button id="like-btn" data-like-url="{% url 'blog:like_post' post.slug %}">Me gusta</button>
+  </article>
+
+
+  <section class="comments">
+    <h3>Comentarios ({{ comentarios|length }})</h3>
+    <ul class="comment-list">
+      {% for c in comentarios %}
+        <li>
+          <strong>{{ c.nombre }}</strong>
+          <span class="comment-date">{{ c.creado|date:'d/m/Y H:i' }}</span>
+          <p>{{ c.contenido|linebreaks }}</p>
+        </li>
+      {% empty %}
+        <li><em>Aún no hay comentarios. ¡Sé el primero!</em></li>
+      {% endfor %}
+    </ul>
+
+
+    <h4>Dejar un comentario</h4>
+    <form method="post" class="comment-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Publicar</button>
+    </form>
+  </section>
+{% endblock %} 

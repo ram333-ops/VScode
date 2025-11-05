@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>{% block title %}Blog Universitario{% endblock %}</title>
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+
+    <div class="container">
+      <h1><a href="{% url 'blog:index' %}">Blog Universitario</a></h1>
+      <nav>
+        <form action="{% url 'blog:buscar' %}" method="get" class="search-form">
+          <input type="text" name="q" placeholder="Buscar..." value="{{ q|default:'' }}">
+          <button type="submit">Buscar</button>
+        </form>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <aside class="sidebar">
+      <h3>Categorías</h3>
+      <ul>
+        <li><a href="{% url 'blog:index' %}">Todas</a></li>
+        {% for c in categorias %}
+          <li class="{% if categoria_activa and categoria_activa.id == c.id %}active{% endif %}">
+            <a href="{% url 'blog:por_categoria' c.slug %}">{{ c.nombre }}</a>
+          </li>
+        {% empty %}
+          <li><em>Sin categorías</em></li>
+        {% endfor %}
+      </ul>
+    </aside>
+
+
+   <section class="content">
+     {% block content %}{% endblock %}
+   </section>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© {{ now|date:'Y' }} — Blog Universitario. Hecho con Django.</p>
+    </div>
+  </footer>
+
+
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,18 +1,18 @@
-<!doctype html>
-<html lang="es">
-  <head><meta charset="utf-8"><title>Blog</title></head>
-  <body>
-    <h1>Listado</h1>
-    {% if page_obj %}
-      <ul>
-        {% for post in page_obj %}
-          <li>{{ post.titulo }}</li>
-        {% empty %}
-          <li>No hay publicaciones todavía.</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>Sin datos.</p>
-    {% endif %}
-  </body>
-</html>
+{% extends 'blog/base.html' %}
+{% block title %}Blog Universitario — Inicio{% endblock %}
+{% block content %}
+  <h2>Últimas publicaciones</h2>
+  {% for post in page_obj %}
+    <article class="post-card">
+      <h3><a href="{\% url 'blog:detalle' post.slug %}">{{ post.titulo }}</a></h3>
+      {% if post.categoria %}<span class="pill">{{ post.categoria.nombre }}</span>{% endif %}
+      <p class="resumen">{{ post.resumen|default:post.cuerpo|truncatechars:200 }}</p>
+      <div class="meta">Publicado: {{ post.creado|date:'d/m/Y H:i' }} · 👍 {{ post.likes }}</div>
+    </article>
+  {% empty %}
+    <p>No hay publicaciones.</p>
+  {% endfor %}
+
+
+  {% include 'blog/_pagination.html' %}
+{% endblock %}
