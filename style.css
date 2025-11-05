@@ -1,0 +1,51 @@
+:root {
+  --bg: #f7f9fb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --brand: #0ea5e9;
+  --card: #ffffff;
+  --border: #e5e7eb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0; background: var(--bg);
+  color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Helvetica Neue", "Segoe UI Emoji";
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+.site-header, .site-footer { background: var(--card); border-bottom: 1px solid var(--border); }
+.site-footer { border-top: 1px solid var(--border); border-bottom: none; margin-top: 2rem; }
+.site-header h1 { margin: 0; font-size: 1.25rem; }
+.site-header a { text-decoration: none; color: var(--text); }
+.search-form { display: flex; gap: .5rem; }
+.search-form input { padding: .5rem .75rem; border: 1px solid var(--border); border-radius: .5rem; }
+.search-form button { padding: .5rem .75rem; border: 1px solid var(--brand); color: white; background: var(--brand); border-radius: .5rem; cursor: pointer; }
+
+
+main.container { display: grid; grid-template-columns: 240px 1fr; gap: 1.25rem; margin-top: 1rem; }
+.sidebar { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: 1rem; }
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li { margin: .25rem 0; }
+.sidebar a { color: var(--text); text-decoration: none; }
+.sidebar .active a { color: var(--brand); font-weight: 600; }
+
+
+.content { display: grid; gap: 1rem; }
+.post-card { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: 1rem; }
+.post-card h3 { margin: 0 0 .5rem; }
+.pill { display: inline-block; font-size: .75rem; background: #e0f2fe; color: #075985; border-radius: 999px; padding: .125rem .5rem; margin-bottom: .5rem; }
+.resumen { color: var(--muted); }
+.meta { font-size: .875rem; color: var(--muted); margin-top: .5rem; }
+
+
+.post-detail { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: 1rem; }
+#like-btn { margin-top: .5rem; padding: .5rem .75rem; background: var(--brand); color: white; border: none; border-radius: .5rem; cursor: pointer; }
+
+
+.comments { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: 1rem; }
+.comment-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
+.comment-date { color: var(--muted); font-size: .8rem; margin-left: .25rem; }
+.comment-form button { margin-top: .5rem; padding: .5rem .75rem; background: var(--brand); color: white; border: none; border-radius: .5rem; cursor: pointer; }
+
+
+.pagination { display: flex; gap: .75rem; align-items: center; justify-content: center; margin: .75rem 0; }
+.pagination a { text-decoration: none; color: var(--brand); border: 1px solid var(--brand); padding: .25rem .5rem; border-radius: .5rem; }
